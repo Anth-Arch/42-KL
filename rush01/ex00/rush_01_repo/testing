@@ -1,0 +1,41 @@
+//bool human_logic(int isgrid[N][N], int next_row, char *str)
+bool human_logic(void)
+{
+	int next_column = 0;
+	int n_top = (0 + (next_column*2));
+	int n_bottom = (8 + (next_column*2));
+	int top_c = (str[n_top]-48);
+	int bottom_c = (str[n_bottom]-48);
+	int n_left = (16 + (next_row*2));
+	int n_right = (24 + (next_row*2));
+	int left_c = (str[n_left]-48);
+	int right_c = (str[n_right]-48);
+
+	while (next_column< N)
+
+	{
+		if ((top_c == 4) && (bottom_c == 1))
+			if (isgrid[next_row][next_column] != (next_row+1))
+				return false;
+		
+		if ((top_c == 1) && (bottom_c == 4))
+			if (isgrid[next_row][next_column] != (N-next_row))
+				return false;
+
+		if (top_c == 4)
+			if (isgrid[0][next_column] != 1)
+				return false;
+
+		if (top_c == 3)
+			if (isgrid[0][next_column] == 3)
+				return false;
+
+		if (top_c == 2 && bottom_c == 1)
+			if (isgrid[0][next_column] != 3 || isgrid[3][next_column] != 4)
+				return false;
+
+		
+		next_column ++;
+	}
+	return true;
+}
