@@ -1,44 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 08:14:37 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/06 08:27:18 by shkok            ###   ########.fr       */
+/*   Created: 2024/11/06 08:18:25 by shkok             #+#    #+#             */
+/*   Updated: 2024/11/06 08:41:14 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memcpy(void *dest, void *src, size_t n)
 {
-	const unsigned char	*ptr;
-	unsigned char		ch;
-	int					i;
+	char	*desti;
+	char	*srci;
+	int		i;
 
-	ptr = (const unsigned char *)s;
-	ch = (unsigned)c;
+	desti = (char *)dest;
+	srci = (char *)src;
 	i = 0;
-	while (i < n)
+	while ((*desti != '\0') && i < n)
 	{
-		if (*ptr == ch)
-			return ((void *)ptr);
+		*srci = *desti;
+		desti++;
+		srci++;
 		i++;
-		ptr++;
 	}
-	return ((void *)ptr);
+	return (src);
 }
 /*
 int main(void)
 {
-	char *dst = "HELLO EVERYONE";
-	char c = 'O';
-	int n = 5;
+	char *dest ="ABCDEFH";
+	char src[25];
+	int n = 10;
 
-	char *answer = ft_memchr(dst,c,n);
-	write (1,answer,5);
+	char *answer = ft_memcpy(dest,src,n);
+	write (1,answer,10);
 	return (0);
-}
-*/
+}*/
