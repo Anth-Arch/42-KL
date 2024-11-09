@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:27:23 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/08 18:55:32 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/08 21:15:42 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_strlen(const char *s)
 	return (len);
 }
 
-int	ft_strend(char const *s1, char const *set)
+static int	ft_strend(char const *s1, char const *set)
 {
 	int	cycle;
 	int	i;
@@ -76,10 +76,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ft_malloc_copy(temp, stop, s1, i);
 	return (output);
 }
-/*
+
 int main(void)
 {
-	char *s1 = "12312A31231ABC23123123";
+	char *s1 = "12312A3123123123123";
 	char *set = "123A";
 	char *output = ft_strtrim(s1,set);
 
@@ -87,4 +87,4 @@ int main(void)
 	free (output);
 	return (0);
 }
-*/
+
