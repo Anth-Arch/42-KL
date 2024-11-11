@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 22:23:22 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/10 00:15:17 by shkok            ###   ########.fr       */
+/*   Created: 2024/11/11 15:52:00 by shkok             #+#    #+#             */
+/*   Updated: 2024/11/11 20:09:47 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,83 +14,169 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int	delimiter_row(char const *s, char c)
+static void	ft_zero_variable(int *c1, int *c2)
 {
-	int	row;
-	int	i;
-
-	row = 0;
-	i = -1;
-	while (s[++i])
-	{
-		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
-			row++;
-	}
-	printf("Row : %i\n", row);
-	return (row);
+	*c1 = 0;
+	*c2 = 0;
+	return ;
 }
 
-static int	delimiter_column(char const *s, char c)
+static int	delimiter_column(char const *s, char **output, char c)
 {
+	int	i;
+	int	j;
 	int	column;
+	int	row;
 
-	column = 0;
-	printf("Output *s_delimiter: %c\n", *s);
-	if (*s == '\0')
-		return (column);
-	while (*s++ != c)
-		column++;
-	return (column);
+	ft_zero_variable (&i, &row);
+	while (s[i])
+	{
+		ft_zero_variable(&column, &j);
+		while (s[i] == c)
+			i++;
+		if (s[i] == '\0')
+			break ;
+		while (s[i] != c && s[i++] != '\0')
+			column++;
+		output[row] = malloc((column + 1) * sizeof(char));
+		if (!output)
+			return (-1);
+		i = i - column;
+		while (column--)
+			output[row][j++] = s[i++];
+		output[row++][j] = '\0';
+		i++;
+	}
+	return (0);
+}
+
+static char	**delimiter_row(char const *s, char c, int *row)
+{
+	char	**output;
+	int		i;
+
+	i = 0;
+	while (s[i] != c)
+		i++;
+	*row += 1;
+	while (s[i])
+	{
+		if (s[i] == c && s[i + 1] != c)
+			*row += 1;
+		i++;
+	}
+	output = malloc((*row + 1) * sizeof (char *));
+	if (!output)
+		return (NULL);
+	return (output);
+}
+
+static int	ft_strlen(char *s)
+{
+	int	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**output;
-	int		column;
 	int		row;
 	int		i;
 
-	row = 0;
 	i = 0;
-	output = malloc(delimiter_row(s, c) * sizeof(char *));
-	if (!output)
+	row = 0;
+	output = delimiter_row(s, c, &row);
+	if (output == NULL)
 		return (NULL);
-	while (*s)
-	{
-		if (*s == c && *(s + 1) != c)
-		{
-			column = delimiter_column(s + 1, c);
-			output[row] = malloc((column + 1) * sizeof(char));
-			if (!output[row])
-				return (NULL);
-			s++;
-			while (i < column)
-				output[row][i++] = *s++;
-			output[row++][i] = '\0';
-			s--;
-			i = 0;
-		}
-		if (*s != '\0')
-			s++;
-	}
+	output[row] = NULL;
+	i = delimiter_column(s, output, c);
+	if (i == -1)
+		return (NULL);
+	i = 0;
 	return (output);
 }
 /*
 int main(void)
 {
-	char	**output;
-	char	*s = "   A A  a DEF   GHI   ";
-	char	c = ' ';
-	int		row = delimiter_row(s,c);
-	int 	i = 0;
-	output = ft_split(s,c);
-	while (i < row)
+	char **output;
+	char **temp;
+
+	char delimiter = '*';
+	char *s1 = "**0*2**567*911*";
+	printf("Input String: %s\n", s1);
+	output = ft_split(s1,delimiter);
+
+	temp = output;
+	while (*output)
 	{
-		printf("Final Output: %s\n", output[i]);
-		free (output[i]);
-		i++;
+		printf("Output1 : %s\n", *output);
+		free (*output);
+		output++;
 	}
-	free (output);
-	return (0);
+	free (temp);
+
+
+
+
+	char *s2 = "***A*A****A****AAA*AAAA*A*A*AAA*A***";
+	printf("Input 2 String: %s\n", s2);
+		output = ft_split(s2,delimiter);
+	temp = output;
+	while (*output)
+	{
+		printf("Output2 : %s\n", *output);
+		free (*output);
+		output++;
+	}
+	free (temp);
+
+
+
+
+	char *s3 = "A*A*A*AAA*AAAA*A*A*AAA*A";
+	printf("Input 3 String: %s\n", s3);
+		output = ft_split(s3,delimiter);
+	temp = output;
+	while (*output)
+	{
+		printf("Output3 : %s\n", *output);
+		free (*output);
+		output++;
+	}
+	free (temp);
+
+
+
+
+	char *s4 = "***A*A*A*AAA*AAAA*A*A*AAA*A";
+	printf("Input 4 String: %s\n", s4);
+		output = ft_split(s4,delimiter);
+	temp = output;
+	while (*output)
+	{
+		printf("Output4 : %s\n", *output);
+		free (*output);
+		output++;
+	}
+	free (temp);
+
+
+
+
+	char *s5 = "A*A*A*AAA*AAAA*A*A*AAA*A**";
+	printf("Input 5 String: %s\n", s5);
+		output = ft_split(s5,delimiter);
+	temp = output;
+	while (*output)
+	{
+		printf("Output5 : %s\n", *output);
+		free (*output);
+		output++;
+	}
+	free (temp);
 }
 */
