@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 08:14:37 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:23 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:49:35 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 {
 	const unsigned char	*ptr;
 	unsigned char		ch;
-	int					i;
+	size_t				i;
 
 	ptr = (const unsigned char *)s;
 	ch = (unsigned)c;

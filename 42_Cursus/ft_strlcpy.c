@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:11:18 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:07 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:53:23 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int			i;
+	size_t		i;
 	int			len;
 	const char	*s;
 

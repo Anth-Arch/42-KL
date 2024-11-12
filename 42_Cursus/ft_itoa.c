@@ -6,21 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:05:08 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:24 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:48:51 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_strlen(char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
 
 static void	ft_break_assign(long i, char *output, int j)
 {
@@ -43,7 +33,6 @@ char	*itoa(int n)
 	long	i;
 	char	output[11];
 	int		len;
-	char	*temp;
 
 	i = 0;
 	output[10] = '\0';

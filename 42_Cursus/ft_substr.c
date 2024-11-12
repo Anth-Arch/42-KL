@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 07:10:31 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:28:58 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 16:04:59 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char const	*str;
 	char		*temp;
 	char		*output;
-	int			s_len;
-	int			i;
+	size_t		s_len;
+	size_t		i;
 
 	str = s;
 	s_len = 0;

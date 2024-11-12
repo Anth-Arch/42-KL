@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 08:44:12 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:22 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:49:47 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	char	*s1i;
 	char	*s2i;
-	int		i;
+	size_t	i;
 
 	s1i = (char *)s1;
 	s2i = (char *)s2;

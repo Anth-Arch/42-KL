@@ -6,26 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:36:32 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:10 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:52:20 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	ft_tolower(unsigned int i, char *s)
-{
-	(void)i;
-	printf("ft_lower *s = %c\n", *s);
-	*s += 32;
-	return ;
-}
-
-static void	ft_toupper(unsigned int i, char *s)
-{
-	(void)i;
-	*s -= 32;
-	return ;
-}
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

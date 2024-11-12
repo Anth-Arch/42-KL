@@ -6,28 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:57:42 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:04 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 16:08:22 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char	ft_toupper(unsigned int i, char c)
-{
-	i = 0;
-	c -= 32;
-	return (c);
-}
-
-static int	ft_strlen(char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
@@ -36,6 +19,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int		i;
 
 	i = 0;
+	len = ft_strlen(s);
 	output = (char *)malloc((len + 1) * sizeof(char));
 	while (s[i])
 	{
@@ -46,11 +30,12 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (output);
 }
 /*
+#include <stdio.h>
 int main(void)
 {
 	int		i = 0;
 	char	*s = "abcdefgh";
-	char	*output = ft_strmapi(s,ft_toupper);
+	char	*output = ft_strmapi(s,ft_tolower);
 	printf("Output : %s\n", output);
 	free (output);
 	return (0);

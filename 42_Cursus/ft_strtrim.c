@@ -6,20 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:27:23 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:00 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 16:02:50 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_strlen(const char *s)
-{
-	int	len;
-
-	while (s[len])
-		len++;
-	return (len);
-}
 
 static int	ft_strend(char const *s1, char const *set)
 {

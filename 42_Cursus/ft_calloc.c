@@ -6,24 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:32:52 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:30 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:47:36 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	*ft_memset(void *b, int c, size_t len)
-{
-	int	*input;
-
-	input = (int *)b;
-	while (len--)
-	{
-		*input = (int)c;
-		input++;
-	}
-	return ((void *)b);
-}
 
 void	*ft_calloc(size_t count, size_t size)
 {

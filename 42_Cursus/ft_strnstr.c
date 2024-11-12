@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:51:15 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:03 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 16:00:56 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	h = haystack;
 	n = needle;
-	while (*h != '\0')
+	while (*h != '\0' && len--)
 	{
 		found = h;
 		while (*found == *n)

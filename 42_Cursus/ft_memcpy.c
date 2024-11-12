@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 08:18:25 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:21 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:50:10 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memcpy(void *dest, void *src, size_t n)
 {
 	char	*desti;
 	char	*srci;
-	int		i;
+	size_t	i;
 
 	desti = (char *)dest;
 	srci = (char *)src;

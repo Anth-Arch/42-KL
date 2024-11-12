@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:52:00 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:12 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:50:34 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,6 @@ static char	**delimiter_row(char const *s, char c, int *row)
 	if (!output)
 		return (NULL);
 	return (output);
-}
-
-static int	ft_strlen(char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
 }
 
 char	**ft_split(char const *s, char c)
