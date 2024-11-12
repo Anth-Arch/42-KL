@@ -6,13 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:17:13 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/08 07:23:13 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:14 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
+#include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

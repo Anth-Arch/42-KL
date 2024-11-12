@@ -6,11 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:51:04 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/04 14:15:47 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:02 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 char *ft_strrchr(char *s, int c)
 {

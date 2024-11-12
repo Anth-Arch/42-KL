@@ -6,14 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 07:10:31 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/08 08:19:01 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:28:58 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#include "libft.h"
 
 /*
 s: The string from which to create the substring.
@@ -23,6 +20,7 @@ len: The maximum length of the substring.
 Becareful of temp! It is needed in order to return output[0] 
 instead of output[last].
 */
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char const	*str;

@@ -6,13 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:05:57 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/07 16:15:40 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:17 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
+#include "libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {

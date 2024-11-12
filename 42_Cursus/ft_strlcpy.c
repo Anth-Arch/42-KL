@@ -6,11 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:11:18 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/06 20:16:09 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:07 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {

@@ -6,13 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:52:00 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/11 20:09:47 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:12 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 static void	ft_zero_variable(int *c1, int *c2)
 {

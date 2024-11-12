@@ -6,11 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 09:06:05 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/06 15:56:18 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:20 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

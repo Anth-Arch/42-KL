@@ -6,11 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 09:20:52 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/04 12:29:22 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:27 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 int ft_isdigit(int c)
 {

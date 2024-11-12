@@ -6,13 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:57:42 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/08 21:37:23 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:04 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 static char	ft_toupper(unsigned int i, char c)
 {

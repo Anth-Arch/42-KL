@@ -6,13 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:32:52 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/07 17:06:04 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:30 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 static void	*ft_memset(void *b, int c, size_t len)
 {

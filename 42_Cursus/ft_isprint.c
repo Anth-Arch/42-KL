@@ -6,11 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:59:28 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/04 12:47:01 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:25 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 int ft_isprint(int c)
 {

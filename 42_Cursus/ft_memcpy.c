@@ -6,11 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 08:18:25 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/06 10:08:56 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:21 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *dest, void *src, size_t n)
 {

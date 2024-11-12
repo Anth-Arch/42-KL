@@ -6,11 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:17:50 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/07 12:22:15 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:32 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
@@ -37,6 +37,7 @@ int	ft_atoi(const char *str)
 	return (total);
 }
 /*
+#include <stdio.h>
 int main(void)
 {
 	char *s1 = "ABCDEF";

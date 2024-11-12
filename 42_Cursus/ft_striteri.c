@@ -6,13 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:36:32 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/09 21:23:17 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:10 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 static void	ft_tolower(unsigned int i, char *s)
 {

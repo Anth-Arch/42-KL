@@ -6,13 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:27:23 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/08 21:15:42 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:00 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "libft.h"
 
 static int	ft_strlen(const char *s)
 {
@@ -76,7 +74,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ft_malloc_copy(temp, stop, s1, i);
 	return (output);
 }
-
+/*
 int main(void)
 {
 	char *s1 = "12312A3123123123123";
@@ -87,4 +85,5 @@ int main(void)
 	free (output);
 	return (0);
 }
+*/
 

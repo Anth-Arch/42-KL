@@ -6,13 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:01:14 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/07 15:25:06 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:11 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {

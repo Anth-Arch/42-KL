@@ -6,13 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:05:08 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/11 22:24:43 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 11:29:24 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 static int	ft_strlen(char *s)
 {
