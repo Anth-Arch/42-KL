@@ -6,75 +6,47 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:27:23 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 16:02:50 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/14 11:37:23 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_strend(char const *s1, char const *set)
+static int	ft_str_count(char const s1, char const *set)
 {
-	int	cycle;
-	int	i;
-
-	cycle = 0;
-	i = ft_strlen(s1) - 1;
-	while (set[cycle])
+	while (*set)
 	{
-		if (s1[i] == set[cycle++])
-		{
-			i--;
-			cycle = 0;
-		}
+		if (s1 == *set)
+			return (1);
+		set++;
 	}
-	return (i + 1);
-}
-
-static void	ft_malloc_copy(char *temp, int stop, char const *s1, int i)
-{
-	while (stop--)
-		*temp++ = s1[i++];
-	*temp = '\0';
-	return ;
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		i;
-	int		cycle;
-	int		stop;
+	int		start;
+	int		end;
 	char	*output;
-	char	*temp;
 
-	stop = ft_strend(s1, set);
-	i = 0;
-	cycle = 0;
-	while (set[cycle])
-	{
-		if (s1[i] == set[cycle++])
-		{
-			i++;
-			stop--;
-			cycle = 0;
-		}
-	}
-	output = (char *)malloc((stop + 1) * sizeof(char));
+	start = 0;
+	if(!s1 || !set)
+		return (NULL);
+	while (s1[start] && ft_str_count(s1[start], set))
+		start++;
+	end = ft_strlen(s1) - 1;
+	while (end >= start && ft_str_count(s1[end], set))
+		end--;
+	
+	output = (char *)malloc((end - start + 2) * sizeof(char));
 	if (!output)
 		return (NULL);
-	temp = output;
-	ft_malloc_copy(temp, stop, s1, i);
+	i = 0;
+	while (start <= end)
+		output[i++] = s1[start++];
+	output[i] = '\0';
 	return (output);
 }
-/*
-int main(void)
-{
-	char *s1 = "12312A3123123123123";
-	char *set = "123A";
-	char *output = ft_strtrim(s1,set);
 
-	printf("Output : %s\n", output);
-	free (output);
-	return (0);
-}
-*/
 

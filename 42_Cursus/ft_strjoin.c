@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 08:19:52 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 15:52:46 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/13 22:52:26 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*temp;
 
 	i = 0;
+	if (!s1 || !s2)
+	{
+		output = malloc(1 * sizeof(char));
+		*output = '\0';
+		return (output);
+	}
 	slen1 = ft_strlen(s1);
 	slen2 = ft_strlen(s2);
 	output = (char *)malloc((slen1 + slen2 + 1) * sizeof(char));

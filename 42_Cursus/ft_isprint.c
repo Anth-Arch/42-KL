@@ -6,16 +6,16 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:59:28 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:25 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/12 17:15:16 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isprint(int c)
+int	ft_isprint(int c)
 {
-    if (32 <= c && c <= 126)
-        return 1;
-    else
-        return 0;
+	if (32 <= c && c <= 126)
+		return (1);
+	else
+		return (0);
 }

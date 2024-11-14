@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 07:10:31 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 16:04:59 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/13 22:39:28 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,55 @@ len: The maximum length of the substring.
 
 Becareful of temp! It is needed in order to return output[0] 
 instead of output[last].
+
+Function name: 
+	ft_substr
+Prototype
+	char *ft_substr(char const *s, unsigned int start, size_t len);
+Turn in files -
+Parameters 
+	s: The string from which to create the substring.
+	start: The start index of the substring in the
+	string ’s’.
+	len: The maximum length of the substring.
+	Return value The substring.
+	NULL if the allocation fails.
+External functs. 
+	malloc
+Description 
+	Allocates (with malloc(3)) and returns a substring from the string ’s’.
+	The substring begins at index ’start’ and is of maximum size ’len’.
 */
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char const	*str;
-	char		*temp;
+
 	char		*output;
-	size_t		s_len;
 	size_t		i;
 
-	str = s;
-	s_len = 0;
 	i = 0;
-	while (str[s_len])
-		s_len++;
-	if (s_len < (start + len))
-		len = s_len - start;
-	str += start;
+	if (!s || !len || start >= ft_strlen(s))
+	{
+		output = malloc(1 * sizeof(char));
+		if (!output)
+			return (NULL);
+		output[0] = '\0';
+		return (output);
+	}
 	output = (char *)malloc((len + 1) * sizeof(char));
 	if (!output)
 		return (NULL);
-	temp = output;
-	while (i++ < len)
-		*temp++ = *str++;
-	*temp = '\0';
+
+	while (i < len && s[start + i])
+	{
+		output[i] = s[start + i];
+		i++;
+	}
+	output[i] = '\0';
 	return (output);
 }
+
+
 /*
 int main(void)
 {

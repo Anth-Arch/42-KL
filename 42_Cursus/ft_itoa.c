@@ -6,65 +6,65 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:05:08 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 15:48:51 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/14 17:59:16 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static void	ft_break_assign(long i, char *output, int j)
+static void ft_nbr2alp(long number, char *output, int j)
 {
-	char	*base;
-
-	base = "0123456789";
-	if (i < 10)
+	if (number < 10)
 	{
-		output[j] = base[i];
-		output[j + 1] = '\0';
+		output [j] = number + '0';
 		return ;
 	}
-	ft_break_assign (i / 10, output, j + 1);
-	output[j] = base[i % 10];
+	ft_nbr2alp(number / 10, output , j + 1);
+	output[j] = (number % 10) + '0';
+	return ;
 }
 
-char	*itoa(int n)
+static void ft_reverse(char *c)
 {
-	char	*output2;
-	long	i;
-	char	output[11];
 	int		len;
+	char 	temp;
+	int		i;
 
 	i = 0;
-	output[10] = '\0';
-	ft_break_assign(n, output, 0);
-	len = ft_strlen(output);
-	output2 = (char *)malloc((len + 1) * sizeof(char));
-	if (!output2)
-		return (NULL);
-	while (i < len)
+	len = ft_strlen(c);
+	while (i < len/2)
 	{
-		output2[i] = output[len - 1 - i];
+		temp = c[i];
+		c[i] = c[len - 1 - i];
+		c[len - 1 - i] = temp;
 		i++;
 	}
-	output2[i] = '\0';
-	return (output2);
+	return ;
 }
-/*
-int main(void)
+
+char *ft_itoa(int n)
 {
-	int n1 = 1234567;
-	int n2 = 1234;
-	int n3 = 1001001;
-
-	char *output = itoa(n1);
-	printf("String output: %s\n", output);
-	output = itoa(n2);
-	free (output);
-
-	printf("String output: %s\n", output);
-	output = itoa(n3);
-	free (output);
-
-	printf("String output: %s\n", output);
+	long	number;
+	int		minus;
+	int		len;
+	char	output[12];
+	
+	number = 0;
+	minus = 0;
+	ft_memset(output, '\0', sizeof(output));
+	if (n < 0)
+	{
+		number =  n;
+		number *= -1;
+		minus = -1;
+	}
+	else
+		number = n;
+	ft_nbr2alp(number, output, 0);
+	len = ft_strlen(output);
+	if (minus < 0)
+		output[len] = '-';
+	ft_reverse(output);
+	return (ft_strdup(output));
 }
-*/

@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 09:33:34 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 17:16:19 by shkok            ###   ########.fr       */
+/*   Created: 2024/11/14 23:02:46 by shkok             #+#    #+#             */
+/*   Updated: 2024/11/14 23:05:30 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+t_list *ft_lstlast(t_list *lst)
 {
-	if (0 <= c && c <= 127)
-		return (1);
-	else
-		return (0);
+	if (!lst)
+		return(NULL);
+	while (lst != NULL)
+		lst = lst->next;
+	return (lst);
 }

@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 09:33:34 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 17:16:19 by shkok            ###   ########.fr       */
+/*   Created: 2024/11/12 19:04:54 by shkok             #+#    #+#             */
+/*   Updated: 2024/11/12 19:24:22 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	ft_bzero(void *s, size_t n)
 {
-	if (0 <= c && c <= 127)
-		return (1);
-	else
-		return (0);
+	size_t	i;
+	char	*ptr;
+
+	i = 0;
+	ptr = (char *)s;
+	if (n == 0)
+		return ;
+	while (i++ < n)
+		*ptr++ = 0;
+	return ;
 }

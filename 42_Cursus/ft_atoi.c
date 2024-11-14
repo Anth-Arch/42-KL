@@ -6,34 +6,51 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:17:50 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:32 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/13 20:17:40 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+/*
+ESCRIPTION
+     The atoi() function converts the initial portion of the string pointed to
+     by str to int representation.
+
+     It is equivalent to:
+
+           (int)strtol(str, (char **)NULL, 10);
+
+     While the atoi() function uses the current locale, the atoi_l() function
+     may be passed a locale directly. See xlocale(3) for more information.
+
+IMPLEMENTATION NOTES
+     The atoi() and atoi_l() functions are thread-safe and async-cancel-safe.
+
+     The strtol() and strtol_l() functions are recommended instead of atoi()
+     and atoi_l() functions, especially in new code.
+*/
 
 int	ft_atoi(const char *str)
 {
 	const char		*s;
-	int				p_n;
-	int				total;
+	int				sign;
+	long			total;
 
 	s = str;
-	p_n = 0;
+	sign = 0;
 	total = 0;
-	while (*s == ' ')
+	while (*s == ' ' || (*s >= 9 && *s <= 13))
 		s++;
 	if (*s == '-' || *s == '+')
 	{
 		if (*s == '-')
-			p_n = *s;
+			sign = '-';
+		s++;
 	}
-	if (*++s == ' ' || *s == '+' || *s == '-' || '0' > *s || *s > '9')
-		return (0);
 	while ('0' <= *s && *s <= '9')
 		total = (*s++ - '0') + total * 10;
-	if (p_n == '-')
-		return (-total);
+	if (sign == '-')
+		return ((int)(-total));
 	return (total);
 }
 /*

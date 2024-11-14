@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:36:32 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 15:52:20 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/14 11:21:16 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	int	i;
-
+	if (!s)
+		return ;
 	i = 0;
 	while (s[i])
 	{

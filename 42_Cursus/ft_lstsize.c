@@ -1,44 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 08:18:25 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 20:13:19 by shkok            ###   ########.fr       */
+/*   Created: 2024/11/14 22:50:42 by shkok             #+#    #+#             */
+/*   Updated: 2024/11/14 23:05:37 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_lstsize(t_list *lst)
 {
-	unsigned char		*desti;
-	const unsigned char	*srci;
-	size_t				i;
+	int	i;
 
-	desti = (unsigned char *)dest;
-	srci = (const unsigned char *)src;
 	i = 0;
-	if (!desti && !srci)
-		return (NULL);
-	while (i < n)
+	while (lst != NULL)
 	{
-		*desti = *srci;
-		desti++;
-		srci++;
+		lst = lst->next;
 		i++;
 	}
-	return (dest);
+	return (i);
 }
-
-/*int main(void)
-{
-	char *src ="ABCDEF";
-	char *dest;
-	int n = 10;
-
-	char *answer = ft_memcpy(dest,src,n);
-	write (1,answer,10);
-}*/

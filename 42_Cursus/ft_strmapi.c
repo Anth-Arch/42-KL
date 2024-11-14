@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:57:42 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 16:08:22 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/14 11:45:09 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,17 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int		len;
 	int		i;
 
+	if (!s)
+	{
+		output = malloc(1);
+		output[0] = '\0';
+		return (output);
+	}
 	i = 0;
 	len = ft_strlen(s);
 	output = (char *)malloc((len + 1) * sizeof(char));
+	if (!output)
+		return (NULL);
 	while (s[i])
 	{
 		output[i] = f(i, s[i]);

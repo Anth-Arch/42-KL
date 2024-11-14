@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:05:57 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 11:29:17 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/13 23:29:42 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	int	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	write (fd, s, len);
-	write (fd, "\n", 1);
+	if (!s)
+		return ;
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+	write(fd, "\n", 1);
 }
-/*
-int main(void)
-{
-	ft_putendl_fd("ABCD", open("testing.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644));
-}
-*/

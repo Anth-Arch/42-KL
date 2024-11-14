@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 08:18:25 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 20:13:19 by shkok            ###   ########.fr       */
+/*   Created: 2024/11/13 14:47:35 by shkok             #+#    #+#             */
+/*   Updated: 2024/11/13 15:52:59 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char		*desti;
-	const unsigned char	*srci;
+	const unsigned char	*s1i;
+	const unsigned char	*s2i;
 	size_t				i;
 
-	desti = (unsigned char *)dest;
-	srci = (const unsigned char *)src;
+	s1i = (const unsigned char *) s1;
+	s2i = (const unsigned char *) s2;
 	i = 0;
-	if (!desti && !srci)
-		return (NULL);
-	while (i < n)
+	while ((*s1i || *s2i) && i < n)
 	{
-		*desti = *srci;
-		desti++;
-		srci++;
+		if (*s1i != *s2i)
+			return (*s1i - *s2i);
+		s1i++;
+		s2i++;
 		i++;
 	}
-	return (dest);
+	return (0);
 }
-
-/*int main(void)
-{
-	char *src ="ABCDEF";
-	char *dest;
-	int n = 10;
-
-	char *answer = ft_memcpy(dest,src,n);
-	write (1,answer,10);
-}*/

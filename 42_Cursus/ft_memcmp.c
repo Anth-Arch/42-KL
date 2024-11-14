@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 08:44:12 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/12 15:49:47 by shkok            ###   ########.fr       */
+/*   Updated: 2024/11/14 22:24:53 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,20 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*s1i;
-	char	*s2i;
-	size_t	i;
+	const unsigned char	*s1i;
+	const unsigned char	*s2i;
+	size_t				i;
 
-	s1i = (char *)s1;
-	s2i = (char *)s2;
+	s1i = (const unsigned char *)s1;
+	s2i = (const unsigned char *)s2;
 	i = 0;
+	if (n == 0)
+		return (0);
 	while (i < n)
 	{
-		if (*s1i != *s2i)
-			return (*s1i - *s2i);
+		if (s1i[i] != s2i[i])
+			return (s1i[i] - s2i[i]);
 		i++;
-		s1i++;
-		s2i++;
 	}
 	return (0);
 }
-/*
-int main(void)
-{
-	char *s1 = "ABCDEFGH";
-	char *s2 = "ABCD";
-	int n = 6;
-	int answer = ft_memcmp(s1,s2,n);
-	write (1,&answer,1);
-	return (0);
-}*/
