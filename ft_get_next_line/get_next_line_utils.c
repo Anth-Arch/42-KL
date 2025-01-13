@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:49:20 by shkok             #+#    #+#             */
-/*   Updated: 2024/12/13 21:49:57 by shkok            ###   ########.fr       */
+/*   Updated: 2025/01/13 15:11:51 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,59 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	output[i] = '\0';
 	return (output);
+}
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (NULL);
+		s++;
+	}
+	return ((char *)s);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	i;
+	size_t	strlen1;
+	size_t	strlen2;
+	char	*output;
+
+	i = 0;
+	if (!s1 || !s2)
+	{
+		output = malloc(1 * sizeof(char));
+		*output = '\0';
+		return (output);
+	}
+	strlen1 = ft_strlen(s1);
+	strlen2 = ft_strlen(s2);
+	output = (char *)malloc((strlen1 + strlen2 + 1) * sizeof(char));
+	if (!output)
+		return (NULL);
+	ft_memcpy(output, s1, strlen1);
+	ft_memcpy(output + strlen1, s2, strlen2 + 1);
+	return (output);
+}
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char		*desti;
+	const unsigned char	*srci;
+	size_t				i;
+
+	desti = (unsigned char *)dest;
+	srci = (const unsigned char *)src;
+	i = 0;
+	if (!desti && !srci)
+		return (NULL);
+	while (i < n)
+	{
+		*desti = *srci;
+		desti++;
+		srci++;
+		i++;
+	}
+	return (dest);
 }
