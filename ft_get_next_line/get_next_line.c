@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 20:35:34 by shkok             #+#    #+#             */
-/*   Updated: 2025/01/14 22:08:48 by shkok            ###   ########.fr       */
+/*   Updated: 2025/02/03 15:36:18 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 		return (NULL);
-	printf("BUFFER_SIZE: %i\n", BUFFER_SIZE);
 	line = ft_buffer_read(fd, buffer);
 	buffer = ft_new_buffer(line);
 	output = ft_one_line(line);
