@@ -6,14 +6,14 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:44:32 by shkok             #+#    #+#             */
-/*   Updated: 2025/01/14 22:10:26 by shkok            ###   ########.fr       */
+/*   Updated: 2025/02/25 17:33:59 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# ifndef BUFFER_SIZE 
+# ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
 

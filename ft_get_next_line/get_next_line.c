@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 20:35:34 by shkok             #+#    #+#             */
-/*   Updated: 2025/02/03 15:36:18 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/03 12:40:56 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,28 @@ static char	*ft_one_line(char *line)
 {
 	int		size_of_line;
 	char	*new_line;
+	char	*new_line_start;
 
 	size_of_line = 0;
-	while (line [size_of_line] != '\n')
-	{
+	while (line [size_of_line] != '\n' && line [size_of_line] != '\0')
 		size_of_line++;
-		if (line[size_of_line] == '\0')
-			return (ft_strdup(line));
-	}
-	new_line = malloc((size_of_line + 1) * sizeof(char));
+	if (line[size_of_line] == '\0' && size_of_line == 0)
+		return (NULL);
+	if (line[size_of_line] == '\0')
+		return (ft_strdup(line));
+	new_line = malloc((size_of_line + 2) * sizeof(char));
 	if (!new_line)
 		return (NULL);
+	new_line_start = new_line;
 	while (*line != '\n')
 		*new_line++ = *line++;
-	*new_line = *line;
-	return (new_line - size_of_line);
+	if (*line == '\n')
+	{
+		*new_line = *line;
+		new_line++;
+	}
+	*new_line = '\0';
+	return (new_line_start);
 }
 
 static	char	*ft_new_buffer(char *line)
@@ -109,11 +116,16 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*output;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	line = ft_buffer_read(fd, buffer);
 	buffer = ft_new_buffer(line);
 	output = ft_one_line(line);
 	free(line);
+	if (buffer && *buffer == '\0')
+	{
+		free(buffer);
+		buffer = NULL;
+	}
 	return (output);
 }

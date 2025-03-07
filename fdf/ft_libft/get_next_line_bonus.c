@@ -6,32 +6,11 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 20:35:34 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/03 12:40:33 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/05 16:07:07 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	unsigned char		*desti;
-	const unsigned char	*srci;
-	size_t				i;
-
-	desti = (unsigned char *)dest;
-	srci = (const unsigned char *)src;
-	i = 0;
-	if (!desti && !srci)
-		return (NULL);
-	while (i < n)
-	{
-		*desti = *srci;
-		desti++;
-		srci++;
-		i++;
-	}
-	return (dest);
-}
+#include "libft.h"
 
 static char	*ft_one_line(char *line)
 {
