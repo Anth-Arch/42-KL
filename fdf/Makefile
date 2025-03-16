@@ -11,7 +11,8 @@ OBJS = $(SRCS:.c=.o)
 
 AR =  ar rcs
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -Imlx_linux
+FLAGS2 = -lXext -lX11 -lm
 RM = rm -f
 
 %.o:%.c $(HEADER)
@@ -25,7 +26,7 @@ $(LIBS):
 	done
 
 $(NAME): $(OBJS) $(LIBS)
-	$(CC) $(FLAGS) $(OBJS) $(LIBS) -o $(NAME)
+	$(CC) $(FLAGS) $(FLAGS2) $(OBJS) $(LIBS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
