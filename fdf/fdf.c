@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:22:10 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/13 16:38:46 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/17 21:24:08 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@
 
 #include "minilibx-linux/mlx.h"
 #include "ft_libft/libft.h"
+#include <X11/keysym.h>
+#include <X11/X.h>
 
 typedef struct s_mlx_data
 {
 	void *mlx_ptr;
 	void *win_ptr;
+	unsigned int color;
 }		t_mlx_data;
 
 /* HANDLER FUNCTION
@@ -47,7 +50,7 @@ typedef struct s_mlx_data
 
 int handle_input(int keysym, t_mlx_data *data)
 {
-	if (keysym == 65307)
+	if (keysym == XK_Escape)
 	{
 		printf("The %d key (ESC) has been pressed\n\n", keysym);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
@@ -59,17 +62,32 @@ int handle_input(int keysym, t_mlx_data *data)
 	return(0);
 }
 
+int change_color(t_mlx_data *data)
+{
+	//Fill the window with current color
+	// mix_clear_window(data->mlx, data->win);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 150, 150, data->color, "Color Changing Window!");
+	if (data->color == 0xFF0000)
+		data->color = 0x00FF00;
+	else if(data->color == 0x00FF00)
+		data->color = 0x0000FF;
+	else
+		data->color = 0xFF0000;
+		
+	return (0);
+}
+
 int main(void)
 {
 	t_mlx_data data;
 	
 	data.mlx_ptr = mlx_init();
+	data.color = 0xFF0000;
 	if (data.mlx_ptr == NULL)
 		return (MALLOC_ERROR);
 	/*
 	* T_XVAR struct
-	* This function creates a structure and return the address of a struct
-	*that contains all the stuff the minilibx will need in order to do its things 
+	* This function creates a structure and return the address of a struct that contains all the stuff the minilibx will need in order to do its things 
 	*/
 
 	/*
@@ -87,7 +105,9 @@ int main(void)
 	*	When I press a key, handle_input() is triggered
 	*	Every event is linked to its own prototype handler
 	*/
+	
 	mlx_key_hook(data.win_ptr, handle_input, &data);
+	mlx_loop_hook(data.mlx_ptr, change_color, &data);
 	
 	/*
 	*MLX_HOOK
@@ -118,7 +138,7 @@ int main(void)
 		- and then your handler function responds based on the specific event name (every event has its how prototype)
 	*/
 
-	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &button_press, &data)
+	////mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &button_press, &data);
 
 	/*
 	* Event Loop

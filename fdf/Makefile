@@ -6,12 +6,11 @@ LIB_DIRS = ./ft_libft ./minilibx-linux
 LIBS = ./ft_libft/libft.a ./minilibx-linux/libmlx.a
 
 SRCS = fdf.c
-
 OBJS = $(SRCS:.c=.o)
 
 AR =  ar rcs
 CC = cc
-FLAGS = -Wall -Wextra -Werror -Imlx_linux
+FLAGS = -Wall -Wextra -Werror -Imlx_linux -fsanitise=address -g3
 FLAGS2 = -lXext -lX11 -lm
 RM = rm -f
 
