@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prototype.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/20 21:33:43 by shkok             #+#    #+#             */
+/*   Updated: 2025/03/21 14:36:22 by shkok            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include <X11/keysym.h>
 #include <X11/X.h>
 #include "minilibx-linux/mlx.h"
@@ -126,25 +139,10 @@ void color_image_v(t_var *data, int color, int x1, int y1, int x2, int y2)
 int draw_line(int keysym, t_var *data)
 {	
 	int i;
-	int x1;
-	int x2;
-	int y1;
-	int y2;
-
 	i = 0;
 	if (keysym == XK_r)
 	{
-		x1 = data->XY.x[i];
-		x2 =
-		y1 =
-		y2 =
-
 		color_image_h(data, encode_rgb(255,0,0),data->XY.x[i], data->XY.x[i],data->XY.x[i+1], data->XY.y[i+1]);
-
-		x1 =
-		x2 =
-		y1 =
-		y2 =
 		color_image_v(data, encode_rgb(255,0,0),data->XY.x[i], data->XY.x[i],data->XY.x[i+2], data->XY.y[i+2]);
 	}
 	// if (keysym == XK_r)

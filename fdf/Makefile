@@ -10,7 +10,7 @@ OBJS = $(SRCS:.c=.o)
 
 AR =  ar rcs
 CC = cc
-FLAGS = -Wall -Wextra -Werror -Imlx_linux -fsanitise=address -g3
+FLAGS = -Wall -Wextra -Werror -Imlx_linux -fsanitize=address -g3
 FLAGS2 = -lXext -lX11 -lm
 RM = rm -f
 
@@ -21,11 +21,11 @@ all: $(NAME)
 
 $(LIBS):
 	for dir in $(LIB_DIRS); do \
-		$(MAKE) -C $$dir; \
+		$(MAKE) -C $$dir all; \
 	done
 
 $(NAME): $(OBJS) $(LIBS)
-	$(CC) $(FLAGS) $(FLAGS2) $(OBJS) $(LIBS) -o $(NAME)
+	$(CC) $(FLAGS) $(FLAGS2) $(OBJS) $(LIBS) -L. -lft -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 13:47:24 by shkok             #+#    #+#             */
-/*   Updated: 2024/11/29 18:07:07 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/22 01:35:12 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,11 @@ char	**ft_split(char const *s, char c)
     output[assign_no] = NULL;
     return (output);
 }
-/*
+
 int main(void)
 {
     char **output;
-    char *s = "***ABC**C**D***E***";
+    char *s = "1 -1 0 1 1 -1 0 0 -1 0 ";
     char c = '*';
     int row = 0;
 
@@ -119,4 +119,3 @@ int main(void)
     free (output);
     return (0);
 }
-*/
