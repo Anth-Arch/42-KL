@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:33:43 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/21 14:36:22 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/22 18:49:29 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,38 +167,11 @@ int main()
 {
 	t_var data;
 	
-	data.XY.col_Max = 10;
-	data.XY.int_lmax = 30;
-	int start =(SIDE_LEN/8);
-	int end = (SIDE_LEN*7/8);
-
-	int x[] = malloc( data.XY.int_lmax * sizeof(int));
-	int y[] = malloc( data.XY.int_lmax * sizeof(int));
-	int i = 0;
-	int j = 0;
-
-	while (j)
-	{
-		while (i)
-		{
-		if (i == 0)
-			x[i] = ;
-		else
-			x[i] = ;
-		i++;
-		}
-	}
-
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, SIDE_LEN, SIDE_LEN, "My Window2");
 
 	data.img.img_ptr = mlx_new_image(data.mlx,
 	SIDE_LEN,SIDE_LEN);
-
-	data.XY.x = x;
-	data.XY.y = y;
-	data.XY.X_max =2;
-	data.XY.Y_max =2;
 
 	// mlx_get_data_addr basically give me the 'bits_per_pixel', 'line_len' and 'endian' informations
 	data.img.img_pixels_ptr = mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.line_len, &data.img.endian);

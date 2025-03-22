@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:33:32 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/22 23:41:17 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/22 22:16:21 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,25 @@ typedef struct t_var
 	t_coord	XY;
 }		t_var;
 
-int encode_rgb(byte red, byte green, byte blue)
-{
-	return (red << 16 | green << 8 | blue);
-}
-
 int isoX(int x, int y, t_var *data)
 {
-	(void)data;
-	// double cosA = cos(30*(PI/180));
-	// double sinA = sin(30*(PI/180));
-	// int output = x*cosA-y*sinA;
-	double cosA = cos(30*(PI/180));
-	double sinA = sin(30*(PI/180));
-	int output = x*cosA-y*sinA;
-	return (output);
+	double cosA = cos(45*(PI/180));
+	double sinA = sin(45*(PI/180));
+	int p = data->XY.gap;
+	int output = x*p*cosA-y*p*sinA;
+	return (output);	
 }
 int isoY(int x, int y, t_var *data)
 {
-	// double cosA = cos(45*(PI/180));
-	// double sinA = sin(45*(PI/180));
-	// int output = (x*sinA+y*cosA)*0.5-(data->XY.xy[y-1][x-1]);
-	// double cosA = cos(30*(PI/180));
-	// double sinA = sin(30*(PI/180));
-	// int output = x*cosA-y*sinA;
-
-	double sinA = sin(30*(PI/180));
-	int output = (x+y)*sinA-(data->XY.xy[(y/data->XY.gap)-1][(x/data->XY.gap)-1]);
+	double cosA = cos(45*(PI/180));
+	double sinA = sin(45*(PI/180));
+	int p = data->XY.gap;
+	int output = (x*p*sinA+y*p*cosA)*0.5-(data->XY.xy[y-1][x-1]);
 	return (output);
+}
+int encode_rgb(byte red, byte green, byte blue)
+{
+	return (red << 16 | green << 8 | blue);
 }
 
 // Plot in a 2D image the pixel
@@ -106,67 +97,101 @@ void color_image_h(t_var *data, int color, int x1, int y1, int x2, int y2)
 {
 	int dx;
 	int dy;
-	int i;
 	int D;
-	int dir;
 
-	i = 0;
 	if (x1 > x2)
 		reverse_coord (&x1,&y1,&x2,&y2);
-	dir = 1;
 	dy = y2 - y1;
 	if (dy < 0)
-		dir= -1;
-	dy *= dir;
+		dy *= -1;
 	dx = x2 - x1;
 	
 	D =  2*dy - dx;
-	while (i <= dx)
+	while (x1 < x2)
 	{ 
-		my_pixel_put(data, x1 + i, y1, color);
+		my_pixel_put(data, x1, y1, color);
 		if (D > 0)
 		{
-			y1 += dir;
-			D -= 2*dx;
+			y1 = y1 + 1;
+			D = D - 2*dx;
 		}
-		D = D + 2*dy;
-		i++;
+		else
+			D = D + 2*dy;
+		x1++;
 	}
 }
-
 
 void color_image_v(t_var *data, int color, int x1, int y1, int x2, int y2)
 {
 	int dx;
 	int dy;
-	int i;
 	int D;
-	int dir;
 
-	i = 0;
 	if (y1 > y2)
 		reverse_coord (&x1,&y1,&x2,&y2);
 	dx = x2 - x1;
-	dir = 1;
 	if (dx < 0)
-		dir= -1;
-	dx *= dir;
+		dx *= -1;
 	dy = y2 - y1;
-
-	D =  2*dx - dy;
-	while (i <= dy)
+	D =  2*dy - dx;
+	while (y1 < y2)
 	{ 
-		my_pixel_put(data, x1, y1 + i, color);
+		my_pixel_put(data, x1, y1, color);
 		if (D > 0)
 		{
-			x1 += dir;
-			D -= 2*dy;
+			y1 = y1 + 1;
+			D = D - 2*dx;
 		}
-		D += 2*dx;
-		i++;
+		else
+			D = D + 2*dy;
+		y1++;
 	}
 }
 
+void draw_line_vh(int x, int y, t_var *data, int color)
+{
+	int x0;
+	int x1;
+	int y0;
+	int y1;
+
+	if (x != data->XY.size_x)
+	{
+		x0 = isoX(x,y,data);
+		y0 = isoY(x,y,data);
+		x1 = isoX(x+1,y,data);
+		y1 = isoY(x+1,y,data);
+		if ((x1-x0) > (y1-y0))
+		{
+			if (x != data->XY.size_x)
+				color_image_h(data, color,x0,y0,x1,y1);
+		}
+		else
+		{
+			if (y != data->XY.size_y)
+				color_image_v(data, color,x0,y0,x1,y1);
+		}
+	}
+	if (y != data->XY.size_y)
+	{
+		x0 = isoX(x,y,data);
+		y0 = isoY(x,y,data);
+		x1 = isoX(x,y+1,data);
+		y1 = isoY(x,y+1,data);
+		//printf(" Pixel Coordinate: x0==%i y0==%i x1==%i y1==%i\n",x0,y0,x1,y1);
+		if ((x1-x0) > (y1-y0))
+		{
+			if (x != data->XY.size_x)
+				color_image_h(data, color,x0,y0,x1,y1);
+		}
+		else
+		{
+			if (y != data->XY.size_y)
+				color_image_v(data, color,x0,y0,x1,y1);
+		}
+	}
+		
+}
 
 int draw_line(int keysym, t_var *data)
 {	
@@ -187,31 +212,12 @@ int draw_line(int keysym, t_var *data)
 			x = 1;
 			while(x < (data -> XY.size_x) + 1)
 			{	
-				if (x != data->XY.size_x)
-				{
-					printf("Coordinate Befor isoY: x==%i, y==%i\n", x,y);
-					color_image_h(data, 0xFFFFFF, x*p, y*p, (x+1)*p, y*p);
-					int x0 = isoX ((x)*p,(y)*p,data);
-					int y0 = isoY ((x)*p,(y)*p,data);
-					int x1 = isoX ((x+1)*p,(y)*p,data);
-					int y1 = isoY ((x+1)*p,(y)*p,data);
-					if ((x1-x0) > (y1-y0))
-						color_image_h(data, 0xFFFFFF,x0,y0,x1,y1);
-					else
-						color_image_v(data, 0xFFFFFF,x0,y0,x1,y1);
-				}
-				if (y != data->XY.size_y)
-				{
-					color_image_v(data, 0xFFFFFF, x*p, y*p, x*p, (y+1)*p);
-					int x0 = isoX ((x)*p,(y)*p,data);
-					int y0 = isoY ((x)*p,(y)*p,data);
-					int x1 = isoX ((x)*p,(y+1)*p,data);
-					int y1 = isoY ((x)*p,(y+1)*p,data);
-					if ((x1-x0) > (y1-y0))
-						color_image_h(data, 0xFFFFFF,x0,y0,x1,y1);
-					else
-						color_image_v(data, 0xFFFFFF,x0,y0,x1,y1);
-				}
+				printf("Coordinate Befor isoY: %i, %i\n", x,y);
+				draw_line_vh(x,y,data,0xFFFFFF);
+				// if (x != data->XY.size_x)
+				// 	color_image_h(data, 0xFFFFFF, isoX(x,y,data), isoY(x,y,data), isoX(x+1,y,data), isoY(x+1,y,data));
+				// if (y != data->XY.size_y)
+				// 	color_image_v(data, 0xFFFFFF, isoX(x,y,data), isoY(x,y,data), isoX(x,y+1,data), isoY(x,y+1,data));
 				x++;
 			}
 			y++;
