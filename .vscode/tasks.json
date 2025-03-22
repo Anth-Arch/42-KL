@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build C Program",
+            "type": "shell",
+            "command": "cc",
+            "args": [
+				"-Wall",
+				"-Wextra",
+				"-Werror", 
+				"-Imlx_linux", 
+				"-lXext",
+				"-lX11",
+				"-lm", 
+				"coords.c",
+				"-fsanitize=address",
+				"-g3",
+				"./ft_libft/libft.a",
+				"./minilibx-linux/libmlx.a",
+				"-g"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
