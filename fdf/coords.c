@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:33:32 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/26 00:02:28 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/26 16:52:49 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int isoY(int x, int y, t_var *data)
 	// int output = (x*sinA)+(y*cosA)-(data->XY.xy[0][0]);
 	return (output);
 }
-
+ 
 // Plot in a 2D image the pixel
 void my_pixel_put(t_var *data, int x, int y, int color)
 {
@@ -403,11 +403,6 @@ int main(int argV, char **argC)
 	// mlx_get_data_addr basically give me the 'bits_per_pixel', 'line_len' and 'endian' informations
 	data.img.img_pixels_ptr = mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.line_len, &data.img.endian);
 	mlx_key_hook(data.win, draw_line, &data);
-
-
-
-
-
 
 
 	// i = 0;
