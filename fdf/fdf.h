@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:09:58 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/27 23:13:11 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/28 21:41:09 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		endian;
 	int		line_len;
+	int 	mid_win;
 }	t_img;
 
 typedef struct xy0_xy1
@@ -50,14 +51,19 @@ typedef struct xy0_xy1
 	int dir;
 }	t_xyz;
 
+typedef struct z_color
+{
+	int z;
+	int col;
+}	t_zcol;
+
 typedef struct s_coor
 {
-	int **xy;
+	t_zcol **xy;
 	int size_x;
 	int size_y;
 	int gap;
-	t_xyz hor;
-	t_xyz ver;
+	t_xyz xyz;
 }	t_coord;
 
 typedef struct t_var

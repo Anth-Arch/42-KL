@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:33:32 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/26 16:52:49 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/28 15:59:09 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int isoY(int x, int y, t_var *data)
 // Plot in a 2D image the pixel
 void my_pixel_put(t_var *data, int x, int y, int color)
 {
-	int remove_gap;
-	// int remove_gap_0;
+	int xy_coord;
+	// int xy_coord_0;
 	int object_center_dot;
 	int object_center_iso_dot;
 	int window_center;
@@ -111,17 +111,17 @@ void my_pixel_put(t_var *data, int x, int y, int color)
 	
 	window_center = ily * len/2 + ibx * len/2 - object_center_dot;
 	//Original 0,0 position
-	//remove_gap = (ily * (y - gap)) + (ibx * (x -gap));
-	remove_gap = (ily * y) + (ibx * x);
-	*((unsigned int *)(window_center + remove_gap + data->img.img_pixels_ptr)) = color;
+	//xy_coord = (ily * (y - gap)) + (ibx * (x -gap));
+	xy_coord = (ily * y) + (ibx * x);
+	*((unsigned int *)(window_center + xy_coord + data->img.img_pixels_ptr)) = color;
 
 	//THIS WORK!
-	// center_isoY = isoY(center_x,center_y,data);
-	// center_isoX = isoX(center_x,center_y,data);	
-	// object_center_iso_dot = ily * center_isoY + ibx * center_isoX;
-	// window_center = ily * len/2 + ibx * len/2 - object_center_iso_dot;
-	// remove_gap = (ily * (y )) + (ibx * (x));
-	// *((unsigned int *)(window_center + remove_gap + data->img.img_pixels_ptr)) = 0xFF0000;
+	center_isoY = isoY(center_x,center_y,data);
+	center_isoX = isoX(center_x,center_y,data);	
+	object_center_iso_dot = ily * center_isoY + ibx * center_isoX;
+	window_center = ily * len/2 + ibx * len/2 - object_center_iso_dot;
+	xy_coord = (ily * (y )) + (ibx * (x));
+	*((unsigned int *)(window_center + xy_coord + data->img.img_pixels_ptr)) = 0xFF0000;
 
 
 
@@ -135,7 +135,7 @@ void my_pixel_put(t_var *data, int x, int y, int color)
 	// printf("y0: %i, x0:%i, y1:%i, x1:%i\n",center_y,center_x,center_isoY,center_isoX);
 	// //Position the Original to center of the window
 	
-	// *((unsigned int *)(window_center + remove_gap + data->img.img_pixels_ptr)) = 0xFF0000;
+	// *((unsigned int *)(window_center + xy_coord + data->img.img_pixels_ptr)) = 0xFF0000;
 	// *((unsigned int *)(window_center + object_center_dot + data->img.img_pixels_ptr)) = 0xFF0000;
 
 
@@ -161,21 +161,10 @@ void my_pixel_put(t_var *data, int x, int y, int color)
 	// offset = center_return + (data->img.line_len * center_y) + ((data->img.bits_per_pixel / 8) * center_x) - (data->img.line_len * data->XY.gap) - (data->XY.gap * (data->img.bits_per_pixel / 8));
 	// *((unsigned int *)(offset + data->img.img_pixels_ptr)) = 0x00FF00;
 
-
-
-
-
-
-
 	//This code help to undo the center movement dont to the entire images on the center point of the entire image.
 	// center_return = center_return + (data->img.line_len * (center_y - isoY(center_x, center_y,data))) + ((data->img.bits_per_pixel / 8) * (center_x - isoX(center_x, center_y,data)));
 	// offset = center_return + (data->img.line_len * y) + (x * (data->img.bits_per_pixel / 8)) - (data->img.line_len * data->XY.gap) - (data->XY.gap * (data->img.bits_per_pixel / 8));
 	// *((unsigned int *)(offset + data->img.img_pixels_ptr)) = color;
-
-	
-
-
-	
 }
 
 void reverse_coord(int *x1, int *y1, int *x2, int *y2)
