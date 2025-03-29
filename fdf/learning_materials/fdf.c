@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:22:10 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/17 21:24:08 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/29 17:28:36 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ typedef struct s_mlx_data
 *	Every time a key is pressed this function is called
 *
 *	Keysym VS Keycode
-*	A keycode is a hardware-specific code sent by keyboard for a key press,
-*	while a keysym is its abstract representation,
-* 	often used in software to identify the key regardless of hardware.
+*	A keycode is a hardware-specific code sent by keyboard for a key press. (Hardware related)
+*	A keysym is its abstract representation, often used in software to identify the key regardless of hardware.
 */
 
 int handle_input(int keysym, t_mlx_data *data)

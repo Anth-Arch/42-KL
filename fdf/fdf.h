@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:09:58 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/28 21:41:09 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/29 18:13:22 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ typedef struct s_coor
 	t_zcol **xy;
 	int size_x;
 	int size_y;
+	int z_shape;
+	int zoom;
 	int gap;
+	int deg;
 	t_xyz xyz;
 }	t_coord;
 

@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:59:39 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/28 23:06:29 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/29 18:16:27 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	isox(int x, int y, t_var *data)
 	int		output;
 
 	(void)data;
-	cosp = cos(30 * (PI / 180));
-	sinp = sin(30 * (PI / 180));
+	cosp = cos(data->XY.deg * (PI / 180));
+	sinp = sin(data->XY.deg * (PI / 180));
 	output = x * cosp - y * sinp;
 	return (output);
 }
@@ -44,11 +44,12 @@ int	isoy(int x, int y, t_var *data)
 	int		output;
 	int		z;
 
-	cosp = cos(30 * (PI / 180));
-	sinp = sin(30 * (PI / 180));
+	cosp = cos(data->XY.deg * (PI / 180));
+	sinp = sin(data->XY.deg * (PI / 180));
 	if (y / data->XY.gap < data->XY.size_y
 		&& x / data->XY.gap < data->XY.size_x)
-		z = (data->XY.xy[y / data->XY.gap][x / data->XY.gap].z * 30);
+		z = (data->XY.xy[y / data->XY.gap][x / data->XY.gap].z
+				* data->XY.z_shape);
 	else
 		z = 0;
 	output = x * sinp + y * cosp - z;
@@ -214,6 +215,9 @@ static void	map_xyz_data(t_var *data, char **argC)
 
 	j = -1;
 	fd = open(argC[1], O_RDONLY);
+	data->XY.deg = 0;
+	data->XY.z_shape = 1;
+	data->XY.zoom = 1;
 	data->XY.xy = malloc(data->XY.size_y * sizeof(t_zcol *));
 	while (++j < data->XY.size_y)
 		data->XY.xy[j] = malloc(data->XY.size_x * sizeof(t_zcol));
@@ -307,15 +311,20 @@ void	mid_window_offset(t_var *data)
 
 void	my_pixel_put(t_var *data, int x, int y, int color)
 {
-	int	x_y;
 	int	ily;
 	int	ibx;
+	int	max_size;
+	int	current_size;
 
 	ily = data->img.line_len;
 	ibx = data->img.bits_per_pixel / 8;
-	x_y = (ily * y) + (ibx * x);
-	*((unsigned int *)(data->img.mid_win + x_y
-				+ data->img.img_pixels_ptr)) = color;
+	current_size = data->img.mid_win
+		+ (ily * y)
+		+ (ibx * x);
+	max_size = ily * SIDE_LEN;
+	if (current_size < max_size && current_size >= 0)
+		*((unsigned int *)(current_size
+					+ data->img.img_pixels_ptr)) = color;
 }
 
 void	color_image_h(t_var *data, int color, char c)
@@ -385,7 +394,7 @@ int	ft_abs(int i)
 		return (i);
 }
 
-void	all_free(t_var *data)
+int	all_free(t_var *data)
 {
 	mlx_destroy_image(data->mlx, data->img.img_ptr);
 	mlx_destroy_window(data->mlx, data->win);
@@ -393,6 +402,7 @@ void	all_free(t_var *data)
 	free(data->mlx);
 	free_int(data);
 	exit(1);
+	return (0);
 }
 
 void	drawing_start(t_var *data, int x, int y)
@@ -420,7 +430,76 @@ void	drawing_start(t_var *data, int x, int y)
 	}
 }
 
-int	draw_line(int keysym, t_var *data)
+int	clear_image(t_var *data)
+{	
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < SIDE_LEN)
+	{
+		x = 0;
+		while (x < SIDE_LEN)
+		{	
+			*((unsigned int *)(x * data->img.bits_per_pixel / 8
+						+ y * data->img.line_len
+						+ data->img.img_pixels_ptr))
+				= 0x000000;
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+int mouses(int keysym, int x, int y, t_var *data)
+{
+	if (keysym == 4)
+	{
+		clear_image(data);
+		data->XY.zoom += 1;
+	}
+	if (keysym == 5)
+	{
+		clear_image(data);
+		data->XY.zoom -= 1;
+	}
+	return (0);
+}
+
+int	buttons(int keysym, t_var *data)
+{	
+	if (keysym == XK_Right)
+	{
+		clear_image(data);
+		data->XY.deg += 5;
+		if (data->XY.deg >= 360)
+			data->XY.deg -= 360;
+	}
+	if (keysym == XK_z)
+	{
+		clear_image(data);
+		data->XY.z_shape += 1;
+	}
+	if (keysym == XK_x)
+	{
+		clear_image(data);
+		data->XY.z_shape -= 1;
+	}
+	if (keysym == XK_Left)
+	{
+		clear_image(data);
+		data->XY.deg -= 5;
+		if (data->XY.deg <= 0)
+			data->XY.deg += 360;
+	}
+	if (keysym == XK_Escape)
+		all_free(data);
+	return (0);
+}
+
+int	draw_line(t_var *data)
 {	
 	int	x;
 	int	y;
@@ -428,24 +507,24 @@ int	draw_line(int keysym, t_var *data)
 	x = 0;
 	y = 0;
 	mid_window_offset(data);
-	if (keysym == XK_r)
+	while (y < (data -> XY.size_y))
 	{
-		while (y < (data -> XY.size_y))
-		{
-			x = 0;
-			while (x < data -> XY.size_x)
-			{	
-				drawing_start(data, x, y);
-				x++;
-			}
-			y++;
+		x = 0;
+		while (x < data -> XY.size_x)
+		{	
+			drawing_start(data, x, y);
+			x++;
 		}
+		y++;
 	}
-	if (keysym == XK_Escape)
-		all_free(data);
 	mlx_put_image_to_window (data->mlx, data->win, data->img.img_ptr, 0, 0);
 	return (0);
 }
+
+// int mouse_move(int x, int y, void *param) {
+//     printf("Mouse moved to: X = %d, Y = %d\n", x, y);
+//     return (0);
+// }
 
 int	main(int argV, char **argC)
 {	
@@ -470,6 +549,11 @@ int	main(int argV, char **argC)
 	map_size_data(&data, argC);
 	map_xyz_data(&data, argC);
 	checkoutput(&data);
-	mlx_key_hook(data.win, draw_line, &data);
+	//mlx_key_hook(data.win, buttons, &data);
+	mlx_hook(data.win, 2, 1L, buttons, &data);
+	mlx_hook(data.win, 4, 1L<<2, mouses, &data);
+	// mlx_hook(data.win, 6, 1L<<6, mouse_move, &data);
+	mlx_hook(data.win, 17, 0, all_free, &data);
+	mlx_loop_hook(data.mlx, draw_line, &data);
 	mlx_loop(data.mlx);
 }
