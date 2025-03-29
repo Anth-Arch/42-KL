@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:09:58 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/29 18:13:22 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/30 00:03:26 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,23 @@ typedef struct s_coor
 	t_zcol **xy;
 	int size_x;
 	int size_y;
-	int z_shape;
-	int zoom;
 	int gap;
 	int deg;
+	int deg_rot;
+	int border;
+	int z_offset;
 	t_xyz xyz;
 }	t_coord;
+
+typedef struct controls
+{
+	int z_shape;
+	int hor_dir;
+	int ver_dir;
+	int gapi;
+	int z_offset;
+	int col_off;
+} t_cont;
 
 typedef struct t_var
 {
@@ -75,6 +86,7 @@ typedef struct t_var
 	void 	*win;
 	t_img	img;
 	t_coord	XY;
+	t_cont	cont;
 }		t_var;
 
 #endif

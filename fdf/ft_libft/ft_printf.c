@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:02:21 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/05 16:16:10 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/30 00:55:29 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	ft_printf(const char *format, ...)
 	va_list	args;	
 
 	count = 0;
-	if(!format)
+	if (!format)
 		return (-1);
 	va_start(args, format);
 	while (*format != '\0')

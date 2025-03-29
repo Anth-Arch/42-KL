@@ -6,7 +6,7 @@
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:59:39 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/30 00:36:27 by shkok            ###   ########.fr       */
+/*   Updated: 2025/03/30 00:23:31 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,28 @@ static void	map_xyz_data(t_var *data, char **argC)
 	xy_zcol(data, fd);
 	close(fd);
 	return ;
+}
+
+static void	checkoutput(t_var *data)
+{
+	int		i;
+	int		j;
+	char	output;
+
+	i = 0;
+	j = 0;
+	while (j < data->XY.size_y)
+	{
+		i = 0;
+		while (i < data->XY.size_x)
+		{
+			output = data->XY.xy[j][i].z + '0';
+			write(1, &output, 1);
+			i++;
+		}
+		write(1, "\n", 1);
+		j++;
+	}
 }
 
 void	dxdy_ready_v(t_var *data, char c)
@@ -485,60 +507,6 @@ int	mouses(int keysym, int x, int y, t_var *data)
 	return (0);
 }
 
-void	buttons2(int keysym, t_var *data)
-{
-	if (keysym == XK_a)
-	{
-		data->XY.deg += 5;
-		if (data->XY.deg >= 360)
-			data->XY.deg -= 360;
-	}
-	else if (keysym == XK_d)
-	{
-		data->XY.deg -= 5;
-		if (data->XY.deg <= 0)
-			data->XY.deg += 360;
-	}
-	else if (keysym == XK_w)
-	{
-		data->XY.deg_rot += 5;
-		if (data->XY.deg_rot >= 360)
-			data->XY.deg_rot -= 360;
-	}
-	else if (keysym == XK_4)
-	{
-		data->XY.deg = 90;
-		data->XY.deg_rot = 90;
-		data->cont.z_shape = -65;
-	}
-}
-
-void	buttons3(int keysym, t_var *data)
-{
-	if (keysym == XK_z)
-		data->cont.z_shape -= 1;
-	else if (keysym == XK_x)
-		data->cont.z_shape += 1;
-	else if (keysym == XK_Right)
-		data->cont.hor_dir += 20;
-	else if (keysym == XK_Left)
-		data->cont.hor_dir -= 20;
-	else if (keysym == XK_Up)
-		data->cont.ver_dir -= 20;
-	else if (keysym == XK_Down)
-		data->cont.ver_dir += 20;
-	else if (keysym == XK_c)
-		data->cont.col_off *= -1;
-	else if (keysym == XK_Escape)
-		all_free(data);
-	else if (keysym == XK_s)
-	{
-		data->XY.deg_rot -= 5;
-		if (data->XY.deg_rot <= 0)
-			data->XY.deg_rot += 360;
-	}
-}
-
 int	buttons(int keysym, t_var *data)
 {	
 	clear_image(data);
@@ -554,14 +522,68 @@ int	buttons(int keysym, t_var *data)
 		data->XY.deg_rot = 0;
 		data->cont.z_shape = -65;
 	}
+	else if (keysym == XK_c)
+	{
+		data->cont.col_off *= -1;
+	}
 	else if (keysym == XK_3)
 	{
 		data->XY.deg = 0;
 		data->XY.deg_rot = 90;
 		data->cont.z_shape = -65;
 	}
-	button2(keysym, data);
-	button3(keysym, data);
+	else if (keysym == XK_4)
+	{
+		data->XY.deg = 90;
+		data->XY.deg_rot = 90;
+		data->cont.z_shape = -65;
+	}
+	else if (keysym == XK_a)
+	{
+		data->XY.deg += 5;
+		if (data->XY.deg >= 360)
+			data->XY.deg -= 360;
+		ft_printf("Degree: %i\n", data->XY.deg);
+	}
+	else if (keysym == XK_d)
+	{
+		data->XY.deg -= 5;
+		if (data->XY.deg <= 0)
+			data->XY.deg += 360;
+		ft_printf("Degree: %i\n", data->XY.deg);
+	}
+	else if (keysym == XK_w)
+	{
+		data->XY.deg_rot += 5;
+		if (data->XY.deg_rot >= 360)
+			data->XY.deg_rot -= 360;
+		ft_printf("DegreeRot: %i\n", data->XY.deg_rot);
+	}
+	else if (keysym == XK_s)
+	{
+		data->XY.deg_rot -= 5;
+		if (data->XY.deg_rot <= 0)
+			data->XY.deg_rot += 360;
+		ft_printf("DegreeRot: %i\n", data->XY.deg_rot);
+	}
+	else if (keysym == XK_z)
+	{
+		data->cont.z_shape -= 1;
+	}
+	else if (keysym == XK_x)
+	{
+		data->cont.z_shape += 1;
+	}
+	else if (keysym == XK_Right)
+		data->cont.hor_dir += 20;
+	else if (keysym == XK_Left)
+		data->cont.hor_dir -= 20;
+	else if (keysym == XK_Up)
+		data->cont.ver_dir -= 20;
+	else if (keysym == XK_Down)
+		data->cont.ver_dir += 20;
+	else if (keysym == XK_Escape)
+		all_free(data);
 	return (0);
 }
 
@@ -588,11 +610,15 @@ int	draw_line(t_var *data)
 	return (0);
 }
 
+// int mouse_move(int x, int y, void *param) {
+//     printf("Mouse moved to: X = %d, Y = %d\n", x, y);
+//     return (0);
+// }
+
 int	main(int argV, char **argC)
 {	
 	t_var	data;
 
-	errorcheck(argV, argC);
 	data.XY.size_x = 0;
 	data.XY.size_y = 0;
 	data.mlx = mlx_init();
@@ -606,11 +632,16 @@ int	main(int argV, char **argC)
 	data.img.img_ptr = mlx_new_image(data.mlx, SIDE_LEN, SIDE_LEN);
 	data.img.img_pixels_ptr = mlx_get_data_addr(data.img.img_ptr,
 			&data.img.bits_per_pixel,
-			&data.img.line_len, &data.img.endian);
+			&data.img.line_len,
+			&data.img.endian);
+	errorcheck(argV, argC);
 	map_size_data(&data, argC);
 	map_xyz_data(&data, argC);
+	checkoutput(&data);
+	//mlx_key_hook(data.win, buttons, &data);
 	mlx_hook(data.win, 2, 1L, buttons, &data);
-	mlx_hook(data.win, 4, 1L << 2, mouses, &data);
+	mlx_hook(data.win, 4, 1L<<2, mouses, &data);
+	// mlx_hook(data.win, 6, 1L<<6, mouse_move, &data);
 	mlx_hook(data.win, 17, 0, all_free, &data);
 	mlx_loop_hook(data.mlx, draw_line, &data);
 	mlx_loop(data.mlx);
