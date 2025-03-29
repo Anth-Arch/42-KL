@@ -5,26 +5,27 @@ LIB_DIRS = ./ft_libft ./minilibx-linux
 
 LIBS = ./ft_libft/libft.a ./minilibx-linux/libmlx.a
 
-SRCS = fdf.c
+SRCS = main.c drawing_algorithms.c drawing_functions.c event_handling.c map_data_parsing.c memory.c transform_coordinate.c utility.c
 OBJS = $(SRCS:.c=.o)
 
-AR =  ar rcs
+AR = ar rcs
 CC = cc
-FLAGS = -Wall -Wextra -Werror -Imlx_linux -fsanitize=address -g3
+FLAGS = -Wall -Wextra -Werror -Imlx_linux
 FLAGS2 = -lXext -lX11 -lm
 RM = rm -f
 
 %.o:%.c $(HEADER)
 	$(CC) $(FLAG) -c $< -o $@
 
-all: $(NAME)
+all: $(LIBS) $(NAME)
 
 $(LIBS):
 	for dir in $(LIB_DIRS); do \
 		$(MAKE) -C $$dir all; \
 	done
 
-$(NAME): $(OBJS) $(LIBS)
+$(NAME): $(OBJS)
+	$(AR) libft.a $(OBJS)
 	$(CC) $(FLAGS) $(FLAGS2) $(OBJS) $(LIBS) -L. -lft -o $(NAME)
 
 clean:
