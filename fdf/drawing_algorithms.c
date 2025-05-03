@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing_algorithm.c                                :+:      :+:    :+:   */
+/*   drawing_algorithms.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shkok <shkok@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 02:31:28 by shkok             #+#    #+#             */
-/*   Updated: 2025/03/30 02:39:34 by shkok            ###   ########.fr       */
+/*   Updated: 2025/04/17 15:36:57 by shkok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	mid_window_offset(t_var *data)
 			* (data->axis.gap + data->cont.gapi) / data->axis.gap)
 		* sin(data->axis.deg_rot
 			* (PI / 180));
+	data->img.mid_win = 0;
 	data->img.mid_win = ily * SIDE_LEN / 2 + ibx * SIDE_LEN / 2
 		- ily * (isoy(mid_x, mid_y, data) - p->z_offset)
 		- ibx * isox(mid_x, mid_y, data);
@@ -78,7 +79,7 @@ void	my_pixel_put(t_var *data, int x, int y, int color)
 			+ SIDE_LEN / 2 - data->axis.border) <= SIDE_LEN
 		&& (x + data->cont.hor_dir
 			+ SIDE_LEN / 2 - data->axis.border) >= 0)
-		*((unsigned int *)(current_size
+	*((unsigned int *)(current_size
 					+ data->img.img_pixels_ptr)) = color;
 }
 
